@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+            <title>some</title>
+            <link href="1.css" rel="stylesheet" type="text/css"/>
+        </head>
+    
+<body>
+<script>
+    let i=0;
+    class Tree {
+        constructor(){
+            this.value=10;
+            this.right={value: 12, left: {}, right: {}};
+            this.left={value: 5 , left: {}, right: {}};
+        }
+        s(N,m){
+            
+            if(m == undefined){
+                m=this;
+            }
+            if(m.value==null || m.value==N){
+                return m.value;
+            }
+            if(m.value>N){
+                return this.s(N,m.left);
+            } else{
+                return this.s(N,m.right);
+            }
+        }
+        
+        ph(N, m){
+            if(m == undefined){
+                m=this;
+            }
+            if(m.value==undefined){
+                m.value= N;
+                return;
+            }
+            if(m.value>=N){
+                if(m.left==undefined){
+                m.left= {};
+                }
+                return this.ph(N,m.left);
+            }
+            else {
+                if(m.right==undefined){
+                m.right= {};
+                }
+                return this.ph(N,m.right);
+            }
+        }
+        
+        max(m){
+            if(m == undefined){
+                m = this;   
+            }
+                if(m.right==undefined){
+                    return m.value;
+                }
+                else{
+                return this.max(m.right);
+                }
+        }
+        
+        min(m){
+            if(m == undefined){
+                m = this;   
+            }
+                if(m.left==undefined){
+                    return m.value;
+                }
+                else{
+                return this.min(m.left);
+                }
+        }
+        
+        d(N,m){
+            if(m==undefined){
+                alert("Такого элемента нет");
+                return;
+            }
+            if(m.value==N){
+                if(m.right==undefined && m.left==undefined){
+                    m.value=undefined;  
+                    return;
+                }
+                else {
+                    if(m.right==undefined && !m.left==undefined){
+                        m=m.right;
+                        return;
+                       }
+                    else if(!m.right==undefined && m.left==undefined){
+                            m=m.left;
+                            return;
+                            }
+                   }
+            }
+            if(m.value>N){
+                return this.d(N,m.left);
+            }
+            else{
+                return this.d(N,m.right);
+            }
+        }
+    }
+    let T= new Tree;
+    T.ph(13);
+        T.ph(-40);
+    T.ph(14);
+    T.ph(-4);
+    T.ph(24);
+    T.ph(4);
+        T.ph(-24);
+    T.ph(1);
+    T.ph(264);
+    alert(T.min());
+    alert(T.max());
+    console.log(T);
+    
+</script>
+</body>
+
+</html>
+
